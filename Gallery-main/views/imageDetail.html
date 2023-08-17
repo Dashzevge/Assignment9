@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Image Detail</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .image-details {
+            background-color: #9A616D;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .image-details h2 {
+            color: aliceblue;
+            margin-bottom: 10px;
+        }
+        .image-details p {
+            color: aliceblue;
+            margin-top: 10px;
+        }
+
+        .image-details img {
+                max-width: 100%;
+                max-height: 400px;
+            border: 2px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #hoverBtn {
+        color: #fff;
+        text-decoration: none; /* Remove underline from the link */
+        transition: color 0.3s; /* Smooth transition for color change */
+        }
+
+        #hoverBtn:hover {
+        color: #9A616D;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container">
+          <!-- Navbar brand -->
+          <a class="navbar-brand me-2" href="http://localhost/" style="background-color: #9A616D;">
+            <img src="https://modernartgallery.co.in/cdn/shop/files/modern-art-logo_195x@2x.png?v=1672667166" height="50px"
+              alt="Art logo" loading="lazy" style="margin-top: -1px; margin-left: 5px;" />
+          </a>
+    
+          <!-- Toggle button -->
+          <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+    
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                  data-mdb-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-bars"> </i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                 <li>
+                   <a class="dropdown-item" href="/">Home</a>
+                 </li>
+                  <li>
+                    <a class="dropdown-item" href="/admin">User List</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/adminImages">Callery List</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!-- Left links -->
+    
+            <div class="d-flex align-items-center">
+              <a href="/login" class="btn btn-link px-3 me-2" style="color: #9A616D;">
+                <span>Login</span>
+              </a>
+              <a href="/register" class="btn btn-primary me-3" style="background-color: #9A616D;">
+                <span> Sign up for free</span>
+              </a>
+            </div>
+          </div>
+          <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+    <div class="container">
+        <div class="image-details">
+            <h2><%= image.title %></h2>
+            <img src="data:image/jpeg;base64,<%= image.image_data.toString('base64') %>" alt="<%= image.filename %>">
+            <p><%= image.description %></p>
+            <a id ="hoverBtn" href="/" class="btn btn-link px-3 me-2">
+                <span>Back to Gallery</span>
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+</body>
+</html>

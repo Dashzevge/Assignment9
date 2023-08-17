@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gallery List</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2" href="/" style="background-color: #9A616D;">
+        <img src="https://modernartgallery.co.in/cdn/shop/files/modern-art-logo_195x@2x.png?v=1672667166" height="50px"
+          alt="Art logo" loading="lazy" style="margin-top: -1px; margin-left: 5px;" />
+      </a>
+
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-mdb-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bars"> </i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="/">Home</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/admin">User List</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- Left links -->
+
+        <div class="d-flex align-items-center">
+          <a href="/login" class="btn btn-link px-3 me-2" style="color: #9A616D;">
+            <span>Login</span>
+          </a>
+          <a href="/register" class="btn btn-primary me-3" style="background-color: #9A616D;">
+            <span> Sign up for free</span>
+          </a>
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+  <div class="p-5 text-center bg-light">
+    <h1 class="mb-3">Admin panel</h1>
+    <h4 class="mb-3">Gallery list</h4>
+  </div>
+  <table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% images.forEach(image=> { %>
+        <tr>
+          <td>
+            <img style="height: 150px;" src="data:image/jpeg;base64,<%= image.image_data.toString('base64') %>"
+              alt="<%= image.filename %>" />
+          </td>
+          <td>
+            <span class="text-muted mb-0">
+              <%= image.title %>
+            </span>
+          </td>
+          <td>
+            <p>
+              <%= image.description.slice(0, 100) + (image.description.length> 100 ? '...' : '') %>
+            </p>
+          </td>
+          <td>
+            <form action="/deleteImage/<%= image.id %>" method="POST">
+              <button type="submit" class="btn btn-danger btn-floating">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+
+  <div class="p-5 text-center bg-light">
+    <h4 class="mb-3">Add new image</h4>
+  </div>
+
+  <section class="text-md-center">
+    <form class="row g-3 needs-validation" action="/upload" method="POST" enctype="multipart/form-data" style="background-color: 9A616D;">
+      <div class="col-md-4 offset-4">
+        <div class="form-outline">
+          <input type="text" class="form-control" id="title" name="title" required/>
+          <label for="title" class="form-label">Title</label>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="col-md-4 offset-4">
+        <div class="form-outline">
+          <textarea class="form-control" id="description" name="description" required></textarea>
+          <label for="description" class="form-label">Description</label>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+      <div class="col-md-4 offset-4">
+        <div class="form-check">
+          <input class="form-file-text" type="file" id="image" name="image" accept="image/*" required />
+          <label class="form-check-label" class="form-label">Upload file</label>
+          <div class="invalid-feedback">You must upload file </div>
+        </div>
+      </div>
+      <div class="col-md-4 offset-4">
+        <button class="btn btn-primary" type="submit">Upload Image</button>
+      </div>
+    </form>
+  </section>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+</body>
+
+</html>

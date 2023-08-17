@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .image-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .image-details h2 {
+            margin-bottom: 10px;
+        }
+
+        .image-details img {
+            max-width: 100%;
+            max-height: 80vh; /* Limit image height */
+            border: 2px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><%= image.title %></h1>
+    </div>
+    <div class="container">
+        <div class="image-details">
+            <img src="data:image/jpeg;base64,<%= image.image_data.toString('base64') %>" alt="<%= image.filename %>">
+            <p><%= image.description %></p>
+            <a href="/" class="back-link">Back to Images</a>
+        </div>
+    </div>
+</body>
